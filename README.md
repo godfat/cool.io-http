@@ -25,6 +25,8 @@ Simpler HTTP for [cool.io][]
 
 ## SYNOPSIS:
 
+Asynchrony client:
+
     require 'cool.io/http'
 
     Coolio::Http.request(:url => 'http://example.com'){ |response, headers|
@@ -33,6 +35,21 @@ Simpler HTTP for [cool.io][]
       puts " Headers: #{headers}"
     }
 
+    Coolio::Loop.default.run
+
+Fiber-aware synchrony client:
+
+    require 'cool.io/http'
+
+    Fiber.new{
+      Coolio::HttpFiber.request(:url => 'http://example.com'){ |r, h|
+        puts "Response: #{r}"
+        puts
+        puts " Headers: #{h}"
+      }
+      puts "DONE"
+    }.resume
+    puts "GO"
     Coolio::Loop.default.run
 
 ## CONTRIBUTORS:
