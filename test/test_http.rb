@@ -14,7 +14,7 @@ Coolio::Loop.default.run
 puts
 
 Fiber.new{
-  request(Coolio::Http::Fiber)
+  request(Coolio::HttpFiber)
   puts "DONE"
 }.resume
 puts "GO"
