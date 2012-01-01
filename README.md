@@ -49,6 +49,7 @@ Fiber-aware synchrony client:
       }
       puts "DONE"
     }.resume
+
     puts "GO"
     Coolio::Loop.default.run
 
