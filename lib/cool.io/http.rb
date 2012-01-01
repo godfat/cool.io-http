@@ -4,6 +4,8 @@ require 'cool.io'
 require 'cool.io/http/payload'
 
 class Coolio::Http < Coolio::HttpClient
+  autoload :Fiber, 'cool.io/http/fiber'
+
   def self.request opts={}, &block
     method  = opts[:method]  || opts['method']  || :get
     url     = opts[:url]     || opts['url']

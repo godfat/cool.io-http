@@ -1,10 +1,21 @@
 
 require 'cool.io/http'
 
-Coolio::Http.request(:url => 'http://example.com'){ |response, headers|
-  puts "Response: #{response}"
-  puts
-  puts " Headers: #{headers}"
-}
+def request klass
+  klass.request(:url => 'http://example.com'){ |response, headers|
+    puts "Response: #{response}"
+    puts
+    puts " Headers: #{headers}"
+  }
+end
 
+request(Coolio::Http)
+Coolio::Loop.default.run
+puts
+
+Fiber.new{
+  request(Coolio::Http::Fiber)
+  puts "DONE"
+}.resume
+puts "GO"
 Coolio::Loop.default.run
