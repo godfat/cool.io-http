@@ -2,9 +2,11 @@
 require 'uri'
 require 'cool.io'
 require 'cool.io/http/payload'
+require 'cool.io/http/ssl'
 
 module Coolio
   autoload :HttpFiber, 'cool.io/http_fiber'
+  autoload :SSL      , 'cool.io/http/ssl'
 end
 
 class Coolio::Http < Coolio::HttpClient
@@ -24,10 +26,16 @@ class Coolio::Http < Coolio::HttpClient
              r}.merge(query.inject({}){ |r, (k, v)| r[k.to_s] = v.to_s; r })
     p    = Payload.generate(payload)
 
-    connect(uri.host, uri.port).attach(loop).
+    connect(uri.host, uri.port, uri.scheme.downcase == 'https').attach(loop).
       request(method.to_s.upcase, path, :query => q,
                                         :head  => p.headers.merge(headers),
                                         :body  => p.read, &block)
+  end
+
+  def self.connect host, port, ssl
+    http = super(host, port)
+    http.extend(Coolio::SSL) if ssl
+    http
   end
 
   def initialize socket
@@ -51,5 +59,10 @@ class Coolio::Http < Coolio::HttpClient
   def on_request_complete
     super
     @http_callback.call(@http_data.join, @http_response_header)
+  end
+
+  def on_connect
+    ssl_client_start if respond_to?(:ssl_socket)
+    super
   end
 end
