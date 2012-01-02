@@ -29,7 +29,7 @@ Asynchrony client:
 
     require 'cool.io/http'
 
-    Coolio::Http.request(:url => 'http://example.com'){ |response, headers|
+    Coolio::Http.request(:url => 'https://google.com'){ |response, headers|
       puts "Response: #{response}"
       puts
       puts " Headers: #{headers}"
@@ -42,7 +42,7 @@ Fiber-aware synchrony client:
     require 'cool.io/http'
 
     Fiber.new{
-      Coolio::HttpFiber.request(:url => 'http://example.com'){ |r, h|
+      Coolio::HttpFiber.request(:url => 'https://google.com'){ |r, h|
         puts "Response: #{r}"
         puts
         puts " Headers: #{h}"
