@@ -16,8 +16,9 @@ Simpler HTTP for [cool.io][]
 
 ## REQUIREMENTS:
 
-* cool.io
-* mime-types
+* gem cool.io
+* gem mime-types
+* openssl
 
 ## INSTALLATION:
 

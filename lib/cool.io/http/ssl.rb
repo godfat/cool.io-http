@@ -1,4 +1,6 @@
 
+require 'openssl'
+
 module Coolio
   module SSL
     def ssl?
