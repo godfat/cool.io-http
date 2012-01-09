@@ -1,5 +1,10 @@
 # CHANGES
 
+## cool.io-http 0.3.0 -- 2012-01-09
+
+* Introduced `Coolio::Http::Response`. So now instead of passing
+  response and headers to the callback, we pass `Coolio::Http::Response`.
+
 ## cool.io-http 0.2.1 -- 2012-01-09
 
 * Added SSL (HTTPS) supports
