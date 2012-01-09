@@ -2,10 +2,11 @@
 require 'cool.io/http'
 
 def request klass, url
-  klass.request(:url => url){ |response, headers|
-    puts "Response: #{response}"
+  klass.request(:url => url){ |response|
+    puts "Response: #{response.body}"
     puts
-    puts " Headers: #{headers}"
+    puts " Headers: #{response.headers}"
+    puts "  Status: #{response.status}"
   }
 end
 

@@ -10,6 +10,8 @@ module Coolio
 end
 
 class Coolio::Http < Coolio::HttpClient
+  Response = Struct.new(:body, :headers, :status)
+
   def self.request opts={}, &block
     method  = opts[:method]  || opts['method']  || :get
     url     = opts[:url]     || opts['url']
@@ -62,7 +64,9 @@ class Coolio::Http < Coolio::HttpClient
 
   def on_request_complete
     super
-    @http_callback.call(@http_data.join, @http_response_header)
+    @http_callback.call(Response.new(@http_data.join,
+                                     @http_response_header,
+                                     @http_response_header.http_status))
   end
 
   def on_connect

@@ -30,10 +30,11 @@ Asynchrony client:
 
     require 'cool.io/http'
 
-    Coolio::Http.request(:url => 'https://google.com'){ |response, headers|
-      puts "Response: #{response}"
+    Coolio::Http.request(:url => 'https://google.com'){ |response|
+      puts "Response: #{response.body}"
       puts
-      puts " Headers: #{headers}"
+      puts " Headers: #{response.headers}"
+      puts "  Status: #{response.status}"
     }
 
     Coolio::Loop.default.run
@@ -43,10 +44,11 @@ Fiber-aware synchrony client:
     require 'cool.io/http'
 
     Fiber.new{
-      Coolio::HttpFiber.request(:url => 'https://google.com'){ |r, h|
-        puts "Response: #{r}"
+      Coolio::HttpFiber.request(:url => 'https://google.com'){ |response|
+        puts "Response: #{response.body}"
         puts
-        puts " Headers: #{h}"
+        puts " Headers: #{response.headers}"
+        puts "  Status: #{response.status}"
       }
       puts "DONE"
     }.resume
