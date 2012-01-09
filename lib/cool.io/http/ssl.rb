@@ -12,8 +12,7 @@ module Coolio
     def ssl_context
       @ssl_context ||= begin
         c = OpenSSL::SSL::SSLContext.new
-        # TODO: FIXME
-        c.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        # c.verify_mode = OpenSSL::SSL::VERIFY_NONE
         c
       end
     end
