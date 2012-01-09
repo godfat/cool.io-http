@@ -38,6 +38,10 @@ class Coolio::Http < Coolio::HttpClient
     http
   end
 
+  def ssl?
+    false
+  end
+
   def initialize socket
     super
     @http_data = []

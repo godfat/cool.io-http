@@ -1,6 +1,10 @@
 
 module Coolio
   module SSL
+    def ssl?
+      true
+    end
+
     def ssl_socket
       @ssl_scoket ||= begin
         s = OpenSSL::SSL::SSLSocket.new(@_io, ssl_context)
