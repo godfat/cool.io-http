@@ -2,11 +2,11 @@
 
 Gem::Specification.new do |s|
   s.name = "cool.io-http"
-  s.version = "0.3.0"
+  s.version = "0.3.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lin Jen-Shin (godfat)"]
-  s.date = "2012-01-09"
+  s.date = "2012-02-18"
   s.description = "Simpler HTTP for [cool.io][]\n\n[cool.io]: https://github.com/tarcieri/cool.io"
   s.email = ["godfat (XD) godfat.org"]
   s.files = [
@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   "test/test_http.rb"]
   s.homepage = "https://github.com/godfat/cool.io-http"
   s.require_paths = ["lib"]
-  s.rubygems_version = "1.8.15"
+  s.rubygems_version = "1.8.16"
   s.summary = "Simpler HTTP for [cool.io][]"
   s.test_files = ["test/test_http.rb"]
 
