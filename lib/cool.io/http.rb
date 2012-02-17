@@ -66,7 +66,7 @@ class Coolio::Http < Coolio::HttpClient
     super
     @http_callback.call(Response.new(@http_data.join,
                                      @http_response_header,
-                                     @http_response_header.http_status))
+                                     @http_response_header.http_status.to_i))
   end
 
   def on_connect
