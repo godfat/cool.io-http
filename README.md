@@ -10,7 +10,7 @@ by Lin Jen-Shin ([godfat](http://godfat.org))
 
 ## DESCRIPTION:
 
-Simpler HTTP for [cool.io][]
+Simpler HTTP(S) for [cool.io][]
 
 [cool.io]: https://github.com/tarcieri/cool.io
 
