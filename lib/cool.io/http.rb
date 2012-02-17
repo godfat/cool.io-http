@@ -34,7 +34,7 @@ class Coolio::Http < Coolio::HttpClient
                                         :body  => p.read, &block)
   end
 
-  def self.connect host, port, ssl
+  def self.connect host, port, ssl=false
     http = super(host, port)
     http.extend(Coolio::SSL) if ssl
     http
