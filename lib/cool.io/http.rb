@@ -73,4 +73,10 @@ class Coolio::Http < Coolio::HttpClient
     ssl_client_start if respond_to?(:ssl_socket)
     super
   end
+
+  # Called when an error occurs dispatching the request
+  def on_error reason
+    puts reason
+    close
+  end
 end

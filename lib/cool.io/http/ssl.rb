@@ -54,7 +54,7 @@ module Coolio
       if respond_to?(:on_ssl_error)
         on_ssl_error(e)
       else
-        raise e
+        puts "Coolio::SSL: #{e.inspect}"
       end
     end
 
