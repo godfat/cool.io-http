@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Lin Jen-Shin (godfat)"]
   s.date = "2012-02-18"
-  s.description = "Simpler HTTP for [cool.io][]\n\n[cool.io]: https://github.com/tarcieri/cool.io"
+  s.description = "Simpler HTTP(S) for [cool.io][]\n\n[cool.io]: https://github.com/tarcieri/cool.io"
   s.email = ["godfat (XD) godfat.org"]
   s.files = [
   ".gitignore",
@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.homepage = "https://github.com/godfat/cool.io-http"
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.16"
-  s.summary = "Simpler HTTP for [cool.io][]"
+  s.summary = "Simpler HTTP(S) for [cool.io][]"
   s.test_files = ["test/test_http.rb"]
 
   if s.respond_to? :specification_version then
