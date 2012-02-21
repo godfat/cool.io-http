@@ -58,6 +58,22 @@ describe Coolio::Http do
     Coolio::Loop.default.run
   end
 
+  should 'synchrony detach in the middle' do
+    f = Fiber.new{
+      Coolio::HttpFiber.request(:url => "http://localhost:#{port}"){ |r|
+        'never reach here'.should.kind_of?(FalseClass)
+      }
+      Thread.current[:coolio_http_client].should.not.nil?
+      Thread.current[:coolio_http_client].detach
+    }
+    t = Coolio::AsyncWatcher.new
+    t.on_signal{ detach; f.resume }
+    t.signal
+    t.attach(Coolio::Loop.default)
+    f.resume
+    Coolio::Loop.default.run
+  end
+
   should 'ssl' do
     sock = TCPSocket.new('localhost', port)
     Coolio::Http.new(sock)                    .ssl?.should == false
