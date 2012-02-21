@@ -46,6 +46,18 @@ describe Coolio::Http do
     Coolio::Loop.default.run
   end
 
+  should 'synchrony do not resume dead fiber' do
+    f = Fiber.new{
+      request(Coolio::HttpFiber, "http://localhost:#{port}")
+    }
+    t = Coolio::AsyncWatcher.new
+    t.on_signal{ detach; f.resume }
+    t.signal
+    t.attach(Coolio::Loop.default)
+    f.resume
+    Coolio::Loop.default.run
+  end
+
   should 'ssl' do
     sock = TCPSocket.new('localhost', port)
     Coolio::Http.new(sock)                    .ssl?.should == false

@@ -6,7 +6,7 @@ class Coolio::HttpFiber < Coolio::Http
     f = Fiber.current
     super(opts){ |response|
       yield(response) if block_given?
-      f.resume(response)
+      f.resume(response) if f.alive?
     }
     Fiber.yield
   end
