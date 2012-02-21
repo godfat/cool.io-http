@@ -34,7 +34,8 @@ describe Coolio::Http do
   end
 
   should 'asynchrony' do
-    request(Coolio::Http, "http://localhost:#{port}")
+    request(Coolio::Http, "http://localhost:#{port}").
+      should.kind_of?(Coolio::Http)
     Coolio::Loop.default.run
   end
 
