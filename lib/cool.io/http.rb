@@ -28,10 +28,13 @@ class Coolio::Http < Coolio::HttpClient
              r}.merge(query.inject({}){ |r, (k, v)| r[k.to_s] = v.to_s; r })
     p    = Payload.generate(payload)
 
-    connect(uri.host, uri.port, uri.scheme.downcase == 'https').attach(loop).
-      request(method.to_s.upcase, path, :query => q,
-                                        :head  => p.headers.merge(headers),
-                                        :body  => p.read, &block)
+    client = connect(uri.host, uri.port, uri.scheme.downcase == 'https')
+    client.attach(loop)
+    client.request(method.to_s.upcase, path,
+      :query => q,
+      :head  => p.headers.merge(headers),
+      :body  => p.read, &block)
+    client
   end
 
   def self.connect host, port, ssl=false
