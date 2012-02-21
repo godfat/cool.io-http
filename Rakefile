@@ -7,9 +7,8 @@ Gemgem.dir = dir
 desc 'Generate gemspec'
 task 'gem:spec' do
   Gemgem.spec = Gemgem.create do |s|
-    require 'cool.io-http/version'
     s.name    = 'cool.io-http'
-    s.version = CoolioHttp::VERSION
+    s.version = '0.4.0'
 
     %w[cool.io mime-types].each{ |g| s.add_runtime_dependency(g) }
   end
